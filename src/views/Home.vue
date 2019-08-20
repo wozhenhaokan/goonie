@@ -10,6 +10,7 @@
         v-for="(i,index) in bannerList"
         :key="index"
         :style="{'height':offsetheight+'px','background-image':`url('${i.src}')`}">
+        <!-- 主页 -->
         <div v-if="index === 0">
           <ul>
             <li><img src="../assets/img/logo.png" alt=""></li>
@@ -21,10 +22,15 @@
                     @click="goto(childindex)"
             >{{ item.name }}</span>
             </li>
-            <li style="font-size: 16px">咨询热线：400-650-7825 </li>
+            <li style="font-size: 16px">咨询热线：13311552128</li>
           </ul>
-          <p class="title">人工智能技术应用服务商<br>智慧网信解决方案提供商</p>
-          <p class="transfer">提供数据采集、数据标引、数据治理、深度学习、<br>自然语言、知识图谱、可视化分析、人工智能为一体的方案</p>
+          <transition name="title1_1">
+            <p class="title" v-show="fullPage == 0">人工智能技术应用服务商<br>智慧网信解决方案提供商</p>
+          </transition>
+          <transition name="title1_2">
+            <p class="transfer" v-show="fullPage == 0">提供数据采集、数据标引、数据治理、深度学习、<br>自然语言、知识图谱、可视化分析、人工智能为一体的方案</p>
+          </transition>
+          <img class="move_down" src="../../src/assets/img/move_down.png" alt="" v-show="fullPage == 0">
           <div>
             <span
               v-for="(item, index) in fullScreenDomList"
@@ -34,50 +40,88 @@
             </span>
           </div>
         </div>
-        <div v-if="index === 1">
-          <img src="../assets/img/page2_logo.png" alt="">
-          <p>专注网络舆情12年，出版舆情著作4部</p>
-          <p>提供一套全流程化舆情服务体系，全面覆盖舆情监测-舆情分析-舆情预警-舆情处置-<br>
-            舆情引导-新闻发布-传播评估-形象修复，管理舆情完整生命周期，实现舆情管理工作的系统化</p>
-          <img :src="i.content" alt="">
+        <!-- 谷尼舆情 -->
+        <div v-if="index === 1" style="position: relative">
+          <transition name="title">
+            <img src="../assets/img/page2_logo.png" alt="" v-show="fullPage == 1">
+          </transition>
+          <transition name="title1_1">
+            <p class="title" v-show="fullPage == 1">专注网络舆情12年，出版舆情著作4部</p>
+          </transition>
+          <transition name="title1_2">
+            <p class="transfer" v-show="fullPage == 1">提供一套全流程化舆情服务体系，全面覆盖舆情监测-舆情分析-舆情预警-舆情处置-<br>
+              舆情引导-新闻发布-传播评估-形象修复，管理舆情完整生命周期，实现舆情管理工作的系统化</p>
+          </transition>
+          <transition name="slide1">
+            <img :src="i.content" alt="" v-show="fullPage == 1">
+          </transition>
         </div>
+        <!-- 智慧网信 -->
         <div v-if="index === 2">
-          <img src="../assets/img/page3_logo.png" alt="">
-          <p>
-            智慧网信是基于大数据、云计算、人工智能技术建设的，<br>
-            实现业务流程标准化、处理过程智能化、数据分析可视化的新型网信工作管理体系。
-          </p>
-          <img :src="i.content" alt="">
+          <transition name="title">
+            <img src="../assets/img/page3_logo.png" alt="" v-show="fullPage == 2">
+          </transition>
+          <transition name="title1_1">
+            <p class="title" v-show="fullPage == 2">
+              智慧网信是基于大数据、云计算、人工智能技术建设的，<br>
+              实现业务流程标准化、处理过程智能化、数据分析可视化的新型网信工作管理体系。
+            </p>
+          </transition>
+          <transition name="slide1">
+            <img :src="i.content" alt="" v-show="fullPage == 2">
+          </transition>
         </div>
+        <!-- 情报数据 -->
         <div v-if="index === 3">
-          <img src="../assets/img/page4_logo.png" alt="">
-          <p>
-            防范企业风险  提升企业竞争力
-          </p>
-          <img :src="i.content" alt="">
+          <transition name="title">
+            <img src="../assets/img/page4_logo.png" alt="" v-show="fullPage == 3">
+          </transition>
+          <transition name="title1_1">
+            <p class="title" v-show="fullPage == 3">
+              防范企业风险  提升企业竞争力
+            </p>
+          </transition>
+          <transition name="slide1">
+            <img :src="i.content" alt="" v-show="fullPage == 3">
+          </transition>
         </div>
+        <!-- 业绩案例 -->
         <div v-if="index === 4">
-          <p>客户案例</p>
-          <img src="../assets/img/page5_content1.png" alt="">
-          <img src="../assets/img/page5_content2.png" alt="">
-          <img src="../assets/img/page5_content3.png" alt="">
+          <transition name="title">
+            <p class="title" v-show="fullPage === 4">客户案例</p>
+          </transition>
+          <transition name="slide1">
+            <img src="../assets/img/page5_content1.png" v-show="fullPage === 4" alt="">
+          </transition>
+          <transition name="slide2">
+            <img src="../assets/img/page5_content2.png" v-show="fullPage === 4" alt="">
+          </transition>
+          <transition name="slide3">
+            <img src="../assets/img/page5_content3.png" v-show="fullPage === 4" alt="">
+          </transition>
         </div>
+        <!-- 联系我们 -->
         <div v-if="index === 5">
-          <p class="title">联系我们 <span class="title_in">（咨询有礼）</span></p>
-          <div>
+          <transition name="title">
+            <p class="title" v-show="fullPage === 5">联系我们 <span class="title_in">（咨询有礼）</span></p>
+          </transition>
+          <transition name="title1_1">
+            <div v-show="fullPage === 5">
               <p class="first_p">
-                地       址：北京市海淀区清河嘉园甲1号楼A座14层（看地图怎么走）<br>
-                电       话：（010）80812116 82834912 转分机804（最终客户）810（产品代理）<br>
-                销售手机：133-1155-2128<br>
-                在线咨询：QQ：93742871（产品代理）<br>
-                售前邮箱：sales@goonie.cn&nbsp; &nbsp;&nbsp;&nbsp;售后邮箱：goonie800@126.com<br>
+                地       址：北京市海淀区清河嘉园甲1号楼A座14层<br>
+                电 话：010-80812116 82834912 转分机804<br>
+                手机/微信：133-1155-2128<br>
+                邮箱：93742871@qq.com<br>
               </p>
               <img src="../assets/img/page6_content1.png" alt="" class="first_img">
-          </div>
-          <div>
-            <img src="../assets/img/page6_content2.png" class="second_img" alt="">
-            <p class="second_p">《领导干部网络舆情工作指南》、《领导干部大数据应用<br>指南》书已被中国国家图书馆、中央党校图书馆、清华大<br>学图书馆、北京大学图书馆、复旦大学图书馆、同济大学<br>图书馆、浙江大学图书馆、厦门大学图书馆等近20所高校<br>图书馆收藏。</p>
-          </div>
+            </div>
+          </transition>
+          <transition name="title1_2">
+            <div v-show="fullPage === 5">
+              <img src="../assets/img/page6_content2.png" class="second_img" alt="">
+              <p class="second_p">《领导干部网络舆情工作指南》、《领导干部大数据应用<br>指南》书已被中国国家图书馆、中央党校图书馆、清华大<br>学图书馆、北京大学图书馆、复旦大学图书馆、同济大学<br>图书馆、浙江大学图书馆、厦门大学图书馆等近20所高校<br>图书馆收藏。</p>
+            </div>
+          </transition>
           <p class="footer">
             谷尼国际软件（北京）有限公司 版权所有 Copyright Gooniesoft Co.,Ltd All Rights Reserved<br>
             北京海淀公安分局备案号：1101085030 京ICP备09060067号
@@ -92,12 +136,12 @@
   </div>
 </template>
 <script>
-import page1 from '../assets/img/page1.png'
-import page2 from '../assets/img/page2.png'
-import page3 from '../assets/img/page3.png'
-import page4 from '../assets/img/page4.png'
-import page5 from '../assets/img/page5.png'
-import page6 from '../assets/img/page6.png'
+import page1 from '../assets/img/page1.jpg'
+import page2 from '../assets/img/page2.jpg'
+import page3 from '../assets/img/page3.jpg'
+import page4 from '../assets/img/page4.jpg'
+import page5 from '../assets/img/page5.jpg'
+import page6 from '../assets/img/page6.jpg'
 import page1Content from '../assets/img/page1_content.png'
 import page2Content from '../assets/img/page2_content.png'
 import page3Content from '../assets/img/page3_content.png'
@@ -309,18 +353,68 @@ export default {
   @function vw($value) {
     @return ($value / $w-base) * 100vw
   }
+  /* 专场效果*/
   /* 设置持续时间和动画函数 */
-  .slide-fade-enter-active {
-    transition: all .3s ease;
+  .title-enter-active, .title-leave-active {
+    transition: all 2s;
   }
-  .slide-fade-leave-active {
-    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-  .slide-fade-enter, .slide-fade-leave-to
-    /* .slide-fade-leave-active for below version 2.1.8 */ {
-    transform: translateX(10px);
+  .title-enter, .title-leave-to {
     opacity: 0;
   }
+  .title1_1-enter-active, .title1_1-leave-active {
+    transition: all 1s cubic-bezier(.43,.46,.64,1.38);
+  }
+  .title1_1-enter, .title1_1-leave-to {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  .title1_2-enter-active, .title1_2-leave-active {
+    transition: all 1s cubic-bezier(.43,.46,.64,1.38);
+  }
+  .title1_2-enter, .title1_2-leave-to {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+
+  .slide1-enter-active{
+    transition: all 1s .4s;
+  }
+  .slide1-enter, .slide1-leave-to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  .slide1-leave-active {
+    transition: all .5s;
+  }
+
+  .slide2-enter-active{
+    transition: all 1s .7s;
+  }
+  .slide2-enter, .slide2-leave-to {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  .slide2-leave-active {
+    transition: all .5s;
+  }
+
+  .slide3-enter-active{
+    transition: all 1s 1s;
+  }
+  .slide3-enter, .slide3-leave-to {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  .slide3-leave-active {
+    transition: all .5s;
+  }
+
+  .move_down{
+    position: absolute;
+    bottom: vh(40);
+    animation: moveDownAnimate 1s ease-out infinite;
+  }
+
   .section{
     overflow: hidden;
   }
@@ -356,7 +450,7 @@ export default {
             }
           }
         }
-        p:nth-child(2){
+        .title{
           color: #fff;
           font-size: 32px;
           line-height: 54px;
@@ -375,13 +469,13 @@ export default {
           margin: 0 auto;
           margin-top: vh(80);
         }
-        p:nth-child(2){
+        .title{
           font-size: 18px;
           line-height: 28px;
           color: #fff;
           margin: vh(30) 0;
         }
-        p:nth-child(3){
+        .transfer{
           font-size: 16px;
           line-height: 26px;
           color: #fff;
@@ -400,7 +494,7 @@ export default {
           margin: 0 auto;
           margin-top: vh(80);
         }
-        p:nth-child(2){
+        .title{
           font-size: 16px;
           line-height: 28px;
           color: #fff;
@@ -420,7 +514,7 @@ export default {
           margin: 0 auto;
           margin-top: vh(80);
         }
-        p:nth-child(2){
+        .title{
           font-size: 18px;
           line-height: 28px;
           color: #fff;
@@ -443,16 +537,16 @@ export default {
           padding: vh(30) 0 vh(20);
           color: #fff;
         }
-        img:nth-child(2){
+        img:nth-of-type(1){
           width: 1000px;
           object-fit: contain;
         }
-        img:nth-child(3){
+        img:nth-of-type(2){
           margin: vh(14) 0;
           width: 914px;
           object-fit: contain;
         }
-        img:nth-child(4){
+        img:nth-of-type(3){
           width: 416px;
           object-fit: contain;
         }
@@ -542,5 +636,19 @@ export default {
   @-webkit-keyframes fullScreenAnimate /* Safari 与 Chrome */
   {
     100% {top:0}
+  }
+
+  @keyframes moveDownAnimate
+  {
+    0% {transform:translateY(0px)}
+    50% {transform:translateY(10px)}
+    100% {transform:translateY(0px)}
+  }
+
+  @-webkit-keyframes moveDownAnimate /* Safari 与 Chrome */
+  {
+    0% {transform:translateY(0px)}
+    50% {transform:translateY(10px)}
+    100% {transform:translateY(0px)}
   }
 </style>

@@ -1,5 +1,9 @@
 <template>
   <div class="section" :style="{'height':offsetheight+'px'}">
+    <div class="header">
+      <img class="logo" src="../../src/assets/img/logo.png" alt="">
+      <a href="tel:133-1155-2128">手机：13311552128</a>
+    </div>
     <div
       class="container"
       :style="{'transform': 'translate3d(0px,-'+ (fullPage*offsetheight+moveY) +'px, 0px)'}"
@@ -12,23 +16,11 @@
         :style="{'height':offsetheight+'px','background-image':`url('${i.src}')`}">
         <!-- 主页 -->
         <div v-if="index === 0">
-          <ul>
-            <li><img src="../assets/img/logo.png" alt=""></li>
-            <li style="font-size: 18px">
-            <span
-                    v-for="(item, childindex) in nav"
-                    :key="childindex"
-                    :class="{ac:childindex == activeIndex}"
-                    @click="goto(childindex)"
-            >{{ item.name }}</span>
-            </li>
-            <li style="font-size: 16px">咨询热线：13311552128</li>
-          </ul>
           <transition name="title1_1">
             <p class="title" v-show="fullPage == 0">人工智能技术应用服务商<br>智慧网信解决方案提供商</p>
           </transition>
           <transition name="title1_2">
-            <p class="transfer" v-show="fullPage == 0">提供数据采集、数据标引、数据治理、深度学习、<br>自然语言、知识图谱、可视化分析、人工智能为一体的方案</p>
+            <p class="transfer" v-show="fullPage == 0">提供数据采集、数据标引、数据治理、深<br>度学习、自然语言、知识图谱、可视化分<br>析、人工智能为一体的方案</p>
           </transition>
           <img class="move_down" src="../../src/assets/img/move_down.png" alt="" v-show="fullPage == 0">
           <div>
@@ -43,14 +35,18 @@
         <!-- 谷尼舆情 -->
         <div v-if="index === 1" style="position: relative">
           <transition name="title">
-            <img src="../assets/img/page2_logo.png" alt="" v-show="fullPage == 1">
+            <p class="plogo" v-show="fullPage == 1">谷尼舆情服务</p>
+            <!--<img src="../assets/img/page2_logo.png" alt="" v-show="fullPage == 1">-->
           </transition>
           <transition name="title1_1">
             <p class="title" v-show="fullPage == 1">专注网络舆情12年，出版舆情著作4部</p>
           </transition>
           <transition name="title1_2">
-            <p class="transfer" v-show="fullPage == 1">提供一套全流程化舆情服务体系，全面覆盖舆情监测-舆情分析-舆情预警-舆情处置-<br>
-              舆情引导-新闻发布-传播评估-形象修复，管理舆情完整生命周期，实现舆情管理工作的系统化</p>
+            <p class="transfer" v-show="fullPage == 1">
+              提供全流程的舆情服务，<br>
+              管理舆情完整生命周期，<br>
+              实现舆情管理工作系统化。<br>
+            </p>
           </transition>
           <transition name="slide1">
             <img :src="i.content" alt="" v-show="fullPage == 1">
@@ -59,12 +55,14 @@
         <!-- 智慧网信 -->
         <div v-if="index === 2">
           <transition name="title">
-            <img src="../assets/img/page3_logo.png" alt="" v-show="fullPage == 2">
+            <p class="plogo" v-show="fullPage == 2">智慧网信平台</p>
           </transition>
           <transition name="title1_1">
-            <p class="title" v-show="fullPage == 2">
-              智慧网信是基于大数据、云计算、人工智能技术建设的，<br>
-              实现业务流程标准化、处理过程智能化、数据分析可视化的新型网信工作管理体系。
+            <p class="transfer" v-show="fullPage == 2">
+              智慧网信是基于大数据、云计算、人工智<br>
+              能技术建设的，实现业务流程标准化、处<br>
+              理过程智能化、数据分析可视化的新型网<br>
+              信工作管理体系。<br>
             </p>
           </transition>
           <transition name="slide1">
@@ -74,10 +72,10 @@
         <!-- 情报数据 -->
         <div v-if="index === 3">
           <transition name="title">
-            <img src="../assets/img/page4_logo.png" alt="" v-show="fullPage == 3">
+            <p class="plogo" v-show="fullPage == 3">情报数据服务</p>
           </transition>
           <transition name="title1_1">
-            <p class="title" v-show="fullPage == 3">
+            <p class="transfer" v-show="fullPage == 3">
               防范企业风险  提升企业竞争力
             </p>
           </transition>
@@ -88,7 +86,7 @@
         <!-- 业绩案例 -->
         <div v-if="index === 4">
           <transition name="title">
-            <p class="title" v-show="fullPage === 4">客户案例</p>
+            <p class="plogo" v-show="fullPage === 4">客户案例</p>
           </transition>
           <transition name="slide1">
             <img src="../assets/img/page5_content1_m.png" v-show="fullPage === 4" alt="">
@@ -106,15 +104,15 @@
         <!-- 联系我们 -->
         <div v-if="index === 5">
           <transition name="title">
-            <p class="title" v-show="fullPage === 5">联系我们 <span class="title_in">（咨询有礼）</span></p>
+            <p class="plogo" v-show="fullPage === 5">联系我们 <span class="title_in">（咨询有礼）</span></p>
           </transition>
           <transition name="title1_1">
             <div v-show="fullPage === 5">
-              <p class="first_p">
+              <p class="transfer">
                 地       址：北京市海淀区清河嘉园甲1号楼A座14层<br>
                 电 话：010-80812116 82834912 转分机804<br>
-                手机/微信：133-1155-2128<br>
-                邮箱：93742871@qq.com<br>
+                <a href="tel:133-1155-2128">手机/微信：133-1155-2128</a><br>
+                <a href="mailto:93742871@qq.com">邮箱：93742871@qq.com</a><br>
               </p>
               <img src="../assets/img/page6_content1.png" alt="" class="first_img">
             </div>
@@ -122,20 +120,19 @@
           <transition name="title1_2">
             <div v-show="fullPage === 5">
               <img src="../assets/img/page6_content2.png" class="second_img" alt="">
-              <p class="second_p">《领导干部网络舆情工作指南》、《领导干部大数据应用<br>指南》书已被中国国家图书馆、中央党校图书馆、清华大<br>学图书馆、北京大学图书馆、复旦大学图书馆、同济大学<br>图书馆、浙江大学图书馆、厦门大学图书馆等近20所高校<br>图书馆收藏。</p>
             </div>
           </transition>
-          <p class="footer">
-            谷尼国际软件（北京）有限公司 版权所有 Copyright Gooniesoft Co.,Ltd All Rights Reserved<br>
-            北京海淀公安分局备案号：1101085030 京ICP备09060067号
-          </p>
+          <!--<p class="footer">
+            谷尼国际软件（北京）有限公司 版权所有<br>
+            Copyright Gooniesoft Co.,Ltd All Rights Reserved
+          </p>-->
         </div>
       </div>
     </div>
-    <div class="fixed-list">
+    <!--<div class="fixed-list">
       <div v-for="(i,index) in bannerList" :key="index" :class="fullPage==index?'color':''" @click="pageInfo(index)">
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 <script>
@@ -347,8 +344,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  $w-base: 1920;
-  $h-base: 960;
+  $w-base: 750;
+  $h-base: 1334;
   @function vh($value) {
     @return ($value / $h-base) * 100vh
   }
@@ -383,7 +380,7 @@ export default {
   }
   .slide1-enter, .slide1-leave-to {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-100px);
   }
   .slide1-leave-active {
     transition: all .5s;
@@ -422,14 +419,41 @@ export default {
     transition: all .5s;
   }
 
-  .move_down{
-    position: absolute;
-    bottom: vh(40);
-    animation: moveDownAnimate 1s ease-out infinite;
+  .slide4-enter-active{
+    transition: all 1s 1.7s;
+  }
+  .slide4-enter, .slide3-leave-to {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  .slide4-leave-active {
+    transition: all .5s;
   }
 
   .section{
     overflow: hidden;
+  }
+  .header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    height: vw(113);
+    line-height: vw(113);
+    width: vw(750);
+    display: flex;
+    justify-content: space-between;
+    .logo{
+      height: auto;
+      width: vw(245);
+      padding-left: vw(50);
+      object-fit: contain;
+    }
+    a{
+      padding-right: vw(50);
+      color: #fff;
+      font-size: vw(30);
+    }
   }
   .container{
     width: 100%;height: 100%;
@@ -443,175 +467,150 @@ export default {
         margin: 0 auto;
       }
       &:nth-child(1)>div{
-        ul{
-          padding-top: 2vh;
-          width: 1100px;
-          margin: 0 auto;
-          display: flex;
-          justify-content: space-between;
-          color: #fff;
-          li{
-            span{
-              margin-right: 30px;
-              display: inline-block;
-              padding-bottom: 4px;
-              cursor: pointer;
-
-              &.ac{
-                border-bottom: 1px solid #fff;
-              }
-            }
-          }
-        }
         .title{
           color: #fff;
-          font-size: 32px;
-          line-height: 54px;
-          margin-bottom: 20px;
-          margin-top: vh(300);
+          font-size: vw(38);
+          line-height: vw(54);
+          margin-bottom: vw(50);
+          padding-top: vw(200+113);
+          font-weight: bold;
+        }
+        .move_down{
+          width: vw(26);
+          margin-top: vw(60);
+          animation: moveDownAnimate 1s ease-out infinite;
         }
         .transfer{
           color: #fff;
-          font-size: 18px;
-          line-height: 28px;
+          font-size: vw(28);
+          line-height: vw(60);
         }
       }
       &:nth-child(2)>div{
-        img:first-child{
-          height: 44px;
-          margin: 0 auto;
-          margin-top: vh(80);
+        color: #fff;
+        .plogo{
+          padding-top: vw(100+113);
+          font-weight: bold;
+          font-size: vw(38);
+          line-height: vw(54);
+          padding-bottom: vw(40);
         }
         .title{
-          font-size: 18px;
-          line-height: 28px;
-          color: #fff;
-          margin: vh(30) 0;
+          font-size: vw(32);
+          line-height: vw(32);
         }
         .transfer{
-          font-size: 16px;
-          line-height: 26px;
-          color: #fff;
+          font-size: vw(28);
+          line-height: vw(60);
+          margin-top:vw(40);
         }
         img:last-child{
-          height: 250px;
-          width: 640px;
+          height: vw(250);
+          width: vw(637);
           object-fit: contain;
           margin: 0 auto;
-          margin-top: vh(80);
+          margin-top: vw(80);
         }
       }
       &:nth-child(3)>div{
-        img:first-child{
-          height: 44px;
-          margin: 0 auto;
-          margin-top: vh(80);
+        color: #fff;
+        .plogo{
+          padding-top: vw(100+113);
+          font-weight: bold;
+          font-size: vw(38);
+          line-height: vw(54);
+          padding-bottom: vw(40);
         }
-        .title{
-          font-size: 16px;
-          line-height: 28px;
-          color: #fff;
-          margin-top: vh(20);
+        .transfer{
+          font-size: vw(28);
+          line-height: vw(60);
         }
         img:last-child{
-          height: auto;
-          width: 700px;
+          height: vw(345);
+          width: vw(504);
           object-fit: contain;
           margin: 0 auto;
-          margin-top: vh(60);
+          margin-top: vw(40);
         }
       }
       &:nth-child(4)>div{
-        img:first-child{
-          height: 44px;
-          margin: 0 auto;
-          margin-top: vh(80);
+        color: #fff;
+        .plogo{
+          padding-top: vw(100+113);
+          font-weight: bold;
+          font-size: vw(38);
+          line-height: vw(54);
+          padding-bottom: vw(30);
         }
-        .title{
-          font-size: 18px;
-          line-height: 28px;
-          color: #fff;
-          margin-top: vh(20);
+        .transfer{
+          font-size: vw(28);
+          line-height: vw(60);
         }
         img:last-child{
-          height: 410px;
-          width: auto;
+          height: auto;
+          width: vw(644);
           object-fit: contain;
           margin: 0 auto;
-          margin-top: vh(40);
+          margin-top: vw(60);
         }
       }
       &:nth-child(5)>div{
-        padding-left: 30px;
-        box-sizing: border-box;
-        text-align: left;
-        p{
-          font-size: 32px;
-          padding: vh(30) 0 vh(20);
+        .plogo{
+          padding-top: vw(100+113);
+          font-weight: bold;
+          font-size: vw(38);
+          line-height: vw(54);
+          padding-bottom: vw(10);
           color: #fff;
         }
-        img:nth-of-type(1){
-          width: 1000px;
+        img{
+          width: vw(504);
+          height: auto;
           object-fit: contain;
-        }
-        img:nth-of-type(2){
-          margin: vh(14) 0;
-          width: 914px;
-          object-fit: contain;
-        }
-        img:nth-of-type(3){
-          width: 416px;
-          object-fit: contain;
+          margin-top: vw(20);
         }
       }
       &:nth-child(6)>div{
-        padding-left: 30px;
-        box-sizing: border-box;
-        text-align: left;
-        .title{
-          color:#fff;
-          font-size: 28px;
-          padding: vh(30) 0 vh(20);
+        color: #fff;
+        .plogo{
+          padding-top: vw(100+113);
+          font-weight: bold;
+          font-size: vw(38);
+          line-height: vw(54);
+          padding-bottom: vw(30);
         }
         .title_in{
-          font-size: 20px;
-          color: #ffc600
+          font-size: vw(20);
+          color: #ffc600;
         }
-        &>div{
-          display: flex;
-          width: 915px;
-          justify-content: space-between;
-        }
-        .first_p{
-          font-size: 16px;
-          line-height: vh(36);
-          color: #fff;
-        }
-        .second_p{
-          margin-right: -60px;
-          width: 415px;
-          font-size: 16px;
-          line-height: 30px;
-          color: #fff;
-          padding-top: 100px;
-          transform: translateX(-40px);
+        .transfer{
+          padding-left: vw(86);
+          font-size: vw(28);
+          line-height: vw(60);
+          text-align: left;
+          a{
+            font-size: vw(28);
+            line-height: vw(60);
+            color: #fff;
+          }
         }
         img{
           object-fit: contain;
         }
         .first_img{
-          width: 119px;
-          height: 119px;
+          width: vw(120);
+          height: vw(120);
+          margin-top: vw(30);
         }
         .second_img{
-          width: 500px;
-          height: 380px;
+          width: vw(530);
+          height: auto;
         }
         .footer{
           position: absolute;
-          bottom: 20px;
-          font-size: 16px;
-          width: 1100px;
+          bottom: vw(50);
+          font-size: vw(22);
+          width: vw(750);
           margin: 0 auto;
           text-align: center;
           color: #fff;
